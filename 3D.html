@@ -1,0 +1,271 @@
+<!-- 3D.html -->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Khalid-3D store </title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- خط عربي من Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Cairo', 'Tahoma', sans-serif;
+      background: #fafafa;
+    }
+    header {
+      background: linear-gradient(90deg, #6a11cb, #2575fc);
+      color: white;
+      padding: 15px;
+      border-radius: 0 0 15px 15px;
+    }
+    .product-card {
+      transition: 0.3s;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+    .cart-icon {
+      cursor: pointer;
+      font-size: 24px;
+      position: relative;
+    }
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -10px;
+      background: red;
+      color: white;
+      border-radius: 50%;
+      padding: 2px 6px;
+      font-size: 12px;
+    }
+    .cart-dropdown {
+      position: fixed;
+      top: 70px;
+      right: 20px;
+      width: 350px;
+      background: #ffffff;
+      border-radius: 15px;
+      padding: 15px;
+      display: none;
+      z-index: 9999;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+    .cart-close {
+      position: absolute;
+      top: 5px;
+      left: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .btn-custom {
+      border-radius: 50px;
+      padding: 8px 20px;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #004080;
+      color: white;
+      font-size: 14px;
+      margin-top: 50px;
+    }
+    footer span {
+      font-weight: bold;
+    }
+    .counter-box {
+      display: inline-block;
+      background: #ffffff;
+      padding: 15px 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      margin-bottom: 15px;
+    }
+    .counter-label {
+      display: block;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #2c3e50;
+    }
+
+    /* لمسات ألوان للباقة */
+    .card[data-category="هدايا"] { background: linear-gradient(135deg,#f9f9f9,#e3f2fd); }
+    .card[data-category="العاب"] { background: linear-gradient(135deg,#f9f9f9,#fce4ec); }
+    .card[data-category="ديكورات"] { background: linear-gradient(135deg,#f9f9f9,#f3e5f5); }
+    .card[data-category="اكسسوارات"] { background: linear-gradient(135deg,#f9f9f9,#fff3e0); }
+      </style>
+</head>
+<body>
+
+  <!-- الهيدر -->
+  <header class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+     <h2>📢 Khalid-3D store </h2>
+    <div class="d-flex gap-3 align-items-center flex-wrap">
+      <input type="text" id="searchInput" placeholder="ابحث عن منتج..." class="form-control">
+      <select id="categoryFilter" class="form-select">
+        <option value="all">كل الأقسام</option>
+        <option value="اكسسوارات الموبيل">اكسسوارات</option>
+        <option value="ميداليات">هدايا</option>
+        <option value="سيارات ">العاب</option>
+        <option value="شموع - فازات">ديكورات</option>
+
+      </select>
+
+      <div class="cart-icon" onclick="toggleCart()">
+        🛒 <span class="cart-count" id="cartCount">0</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- سلة المشتريات -->
+  <div class="cart-dropdown" id="cartDropdown">
+    <span class="cart-close" onclick="toggleCart()">×</span>
+    <h6 class="mb-3 fw-bold">سلة المشتريات</h6>
+    <ul id="cartItems" class="list-group mb-3"></ul>
+    <p class="mb-2"><strong>الإجمالي: </strong><span id="cartTotal">0</span> ج.م</p>
+    <button class="btn btn-success btn-custom w-100 mb-2" onclick="goToCheckout()">إتمام الطلب</button>
+    <button class="btn btn-danger btn-custom w-100" onclick="clearCartAndHide()">إلغاء الطلبات</button>
+  </div>
+
+  <!-- المنتجات -->
+  <main class="container py-4">
+    <div class="row" id="productList"></div>
+  </main>
+
+  <!-- الفوتر -->
+  <footer>
+    <div class="counter-box">
+      <span class="counter-label">عدد الزوار</span>
+      <a href="https://ekbal-labs.staticrun.app/3D" title=" متجر منتجات 3d">
+        <img src="https://counter5.optistats.ovh/private/freecounterstat.php?c=pl7814exxjlhd8gkbz677xdtl211tr4q"
+             border="0"
+             title="عـداد الـزوار"
+             alt="website counter">
+      </a>
+    </div>
+    <p>© <span id="year"></span> Khalid-3D store  — جميع الحقوق محفوظة</p>
+  <!-- طرق الدفع -->
+    <div class="payment-bar" aria-label="طرق الدفع المتاحة"> 
+      <span class="payment-bar__title">طرق الدفع المتاحة:</span> 
+      <div class="payment-bar__icons">
+      <img src="visa-master.png" alt="visa-master" class="payment-icon" style="height:50px" title="فيزا - ماستركارد"> 
+      <img src="instapay.png" alt="InstaPay" class="payment-icon" style="height:90px" title="انـيستـا باي">
+      <img src="cash.png" alt="cash" class="payment-icon" style="height:40px" title="كـــاش">
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- سكربت المنتجات والسلة -->
+  <script>
+    const products = [
+     {id:1,name:"Mobile-Holder",price:350,category:"اكسسوارات الموبيل",img:"mobile1.jpg"},
+      {id:2,name:"Mobile-Holder New",price:200,category:"اكسسوارات الموبيل",img:"holder-mobile.jpg"},
+      {id:3,name:"Candel-Skull",price:450,category:"شموع - فازات",img:"candel4.jpg"},
+      {id:4,name:"Candel-Ghost",price:250,category:"شموع - فازات",img:"candel3.jpg"},
+      {id:5,name:"Candel-x1",price:500,category:"شموع - فازات",img:"candel2.jpg"},
+      {id:6,name:"Candel-x2",price:600,category:"شموع - فازات",img:"candel1.jpg"},
+      {id:7,name:"vasa Flower-Black",price:450,category:"شموع - فازات",img:"vaza1.jpg"},
+      {id:8,name:"vasa Flower-white",price:550,category:"شموع - فازات",img:"vaza2.jpg"},
+      {id:9,name:"Medal-Boat",price:100,category:"ميداليات",img:"medal1.jpg"},
+      {id:10,name:"PlayStation Keychain",price:50,category:"ميداليات",img:"medal2.jpg"},
+      {id:11,name:"Small Hand-Black",price:250,category:"سيارات ",img:"hand1.jpg"},
+      {id:12,name:"Large Hand",price:450,category:"سيارات ",img:"hand2.jpg"},
+      {id:13,name:"Dragon Black",price:250,category:"سيارات ",img:"Dragon.jpg"},
+      {id:14,name:"Golden-Dragon",price:700,category:"سيارات ",img:"Golden-Dragon.jpg"},
+      {id:15,name:"Big Dragon",price:800,category:"سيارات ",img:"Big Dragon.jpg"},
+      {id:16,name:"Bmw-E63",price:450,category:"سيارات ",img:"Bmw-E63.jpg"},
+      {id:17,name:"chimera- Roots of Life",price:1400,category:"سيارات ",img:"Golden-chimera.jpg"},
+
+      {id:12,name:"باقة الغدة الدرقية",price:350,category:"تحاليل الغدة الدرقية ",img:"thyro3id.jpg"}
+    ];
+
+    let cart = [];
+
+    function renderProducts(){
+      const productList = document.getElementById('productList');
+      productList.innerHTML = '';
+      const search = document.getElementById('searchInput').value.toLowerCase();
+      const category = document.getElementById('categoryFilter').value;
+      products.forEach(p=>{
+        if((p.name.toLowerCase().includes(search)||search==='')&&(category==='all'||p.category===category)){
+          const col = document.createElement('div');
+          col.className='col-md-3 mb-3 product-card';
+          col.innerHTML=`
+            <div class="card h-100" data-category="${p.category}">
+              <img src="${p.img}" class="card-img-top" alt="${p.name}">
+              <div class="card-body">
+                <h5 class="card-title">${p.name}</h5>
+                <p class="card-text">سعر: ${p.price} ج.م</p>
+                <button class="btn btn-primary btn-custom" onclick="addToCart(${p.id})">أضف للسلة</button>
+              </div>
+            </div>`;
+          productList.appendChild(col);
+        }
+      });
+    }
+
+    function addToCart(id){
+      const product = products.find(p=>p.id===id);
+      cart.push({...product});
+      updateCart();
+      document.getElementById('cartDropdown').style.display='block';
+    }
+
+    function updateCart(){
+      const cartItems=document.getElementById('cartItems');
+      cartItems.innerHTML='';
+      let total=0;
+      cart.forEach((item,index)=>{
+        total+=item.price;
+        const li=document.createElement('li');
+        li.className='list-group-item d-flex justify-content-between align-items-center';
+        li.innerHTML=`${item.name} - ${item.price} ج.م <button class='btn btn-sm btn-danger' onclick='removeItem(${index})'>X</button>`;
+        cartItems.appendChild(li);
+      });
+      document.getElementById('cartTotal').innerText=total;
+      document.getElementById('cartCount').innerText=cart.length;
+    }
+
+    function removeItem(index){
+      cart.splice(index,1);
+      updateCart();
+    }
+
+    function clearCartAndHide(){
+      cart=[];
+      updateCart();
+      document.getElementById('cartDropdown').style.display='none';
+    }
+
+    function toggleCart(){
+      const dropdown=document.getElementById('cartDropdown');
+      dropdown.style.display=(dropdown.style.display==='block')?'none':'block';
+    }
+
+    function goToCheckout(){
+      if(cart.length===0){alert('السلة فارغة!'); return;}
+      localStorage.setItem('cartItems', JSON.stringify(cart));
+      window.open('checkout.html','_blank');
+    }
+
+    document.getElementById('searchInput').addEventListener('input',renderProducts);
+    document.getElementById('categoryFilter').addEventListener('change',renderProducts);
+
+    renderProducts();
+
+    // تحديث السنة تلقائياً
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

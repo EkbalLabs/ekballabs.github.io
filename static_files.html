@@ -1,0 +1,68 @@
+
+    <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="https://static.run/favicon.ico" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="A collection of documents" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400&display=swap"
+      rel="stylesheet" />
+    <title>Document Collection</title>
+    <!-- Include Tailwind CSS from CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // File list data - organized by directory paths
+      window.fileListData = {"root":[{"Key":"300-Discount.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"50%.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"ALL-VITAMIN12.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"Anima.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"Big Dragon.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"Bmw-E63.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"D+B12.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"D2025.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"Dragon.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"Golden-Dragon.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"Golden-chimera.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"HAIR.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"HORMON.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"HomaIR_2025.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"SAVE.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"TAHALEEL1.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"Vitamins.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"bone2025.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"candel1.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"candel2.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"candel3.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"candel4.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"cardiac.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"cash.png","extension":"png","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"chat-icon.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"check2025.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"child2025.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"copy-check2025.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"device3.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"dis.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"dis1.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"facebook.png","extension":"png","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"fat2025.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"hand1.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"hand2.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"holder-mobile.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"house1.jpeg","extension":"jpeg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"instapay.png","extension":"png","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"logo.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"logo22.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"logo23.png","extension":"png","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"logo24.bmp","extension":"bmp","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"logo25.jpeg","extension":"jpeg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"medal1.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"medal2.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"mobile1.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"mobile2.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"mobile3.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"mobile4.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"qr.png","extension":"png","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"style.css","extension":"css","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"sugar.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"thyroid.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"vaza1.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"vaza2.jpg","extension":"jpg","LastModified":"Mon Sep 15 2025","Size":0},{"Key":"visa-master.png","extension":"png","LastModified":"Mon Sep 15 2025","Size":0}]};
+
+      // Current directory path
+      window.currentDirectory = "";
+
+      // Set initial file list to the root directory
+      window.fileList = window.fileListData["root"];
+    </script>
+  </head>
+
+  <body class="bg-gray-100 font-sans">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div class="container mx-auto px-4 py-8">
+      <div
+        class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+        <h1 class="text-2xl font-semibold text-gray-800">
+          Document Collection
+        </h1>
+        <div class="relative w-full md:w-64">
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search files..."
+            class="w-full px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent" />
+          <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-gray-500"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div id="file-listing-container"></div>
+    </div>
+
+    <script src="https://cdn.static.run/assets/file-listing/script.js"></script>
+  </body>
+</html>
+

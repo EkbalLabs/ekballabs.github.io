@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>معامل إقبال للتحاليل الطبية</title>
+  <style>
+    :root {
+      --green: #25D366;
+      --green-dark: #20b954;
+      --blue: #2563eb;
+      --blue-dark: #1d4ed8;
+      --muted: #666;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      margin: 0;
+      background: #f7f9fc;
+      color: #111;
+    }
+    header {
+      background: linear-gradient(90deg, #fff 0%, #f1f6fb 100%);
+      padding: 18px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #e6eef9;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand img { height: 56px; width: 56px; object-fit: contain; border-radius: 8px; }
+    .brand h1 { font-size: 20px; margin: 0; }
+    nav a { margin-left: 14px; text-decoration: none; color: var(--blue); font-weight: 600; }
+    .hero { padding: 36px 20px; display: grid; grid-template-columns: 1fr 360px; gap: 24px; align-items: flex-start; }
+    .card { background: white; padding: 18px; border-radius: 12px; box-shadow: 0 6px 18px rgba(20,30,60,0.06); }
+    .hero h2 { margin: 0 0 8px 0; font-size: 28px; }
+    .hero p { margin: 0 0 16px; color: var(--muted); }
+    .cta { display: flex; flex-wrap: wrap; gap: 10px; }
+    .btn {
+      display: inline-block;
+      background: var(--green);
+      color: white;
+      padding: 10px 14px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: background .3s;
+    }
+    .btn:hover { background: var(--green-dark); }
+    .info-list { display: grid; gap: 10px; margin-top: 12px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; padding: 20px; }
+    h3 { margin: 0 0 10px; }
+    footer { padding: 18px 20px; background: #0f1724; color: #fff; margin-top: 18px; }
+    .contact { display: flex; flex-direction: column; gap: 6px; }
+    .small { font-size: 13px; color: var(--muted); }
+    .logo-header { width: 100%; max-width: 480px; height: 320px; background-image: url("house1.jpg"); background-size: contain; background-repeat: no-repeat; background-position: center; margin: 20px auto; cursor: pointer; }
+    /* زر Contact Us */
+    .contact-button {
+      position: fixed; top: 50%; right: 20px; transform: translateY(-50%);
+      background-color: var(--blue);
+      color: white; border: none; border-radius: 50px;
+      padding: 10px 15px; font-size: 14px; cursor: pointer;
+      display: flex; align-items: center; z-index: 1000;
+    }
+    .contact-button img { width: 20px; height: 20px; margin-left: 5px; }
+    .contact-options {
+      position: fixed; top: 50%; right: 80px; transform: translateY(-50%);
+      display: none; flex-direction: column; gap: 10px; z-index: 1000;
+    }
+    .contact-options a {
+      background-color: var(--green);
+      color: white; padding: 8px 12px;
+      text-decoration: none; border-radius: 5px;
+      font-size: 14px; position: relative;
+    }
+    .contact-options a.call-btn { background-color: #17a2b8; }
+    .contact-options a.call-btn::after {
+      content: "01117100969 - 01275417454";
+      position: absolute; top: 50%; left: -170px;
+      transform: translateY(-50%);
+      background: black; color: white;
+      padding: 5px 8px; border-radius: 5px;
+      font-size: 13px; white-space: nowrap;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    }
+    .contact-options a.call-btn:hover::after { opacity: 1; }
+    .contact-options a:hover { opacity: 0.9; }
+    @media(max-width: 860px) { .hero { grid-template-columns: 1fr; padding: 18px; } .brand img { height: 48px; width: 48px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <img src="logo25.jpeg" alt="شعار معامل إقبال">
+      <div>
+        <h1>معامل إقبال للتحاليل الطبية</h1>
+        <div class="small" style="color: darkred; font-weight: bold;">رؤية معملية لصحة أفضل</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:16px;align-items:center;direction:rtl;">
+      <div id="qrcode"></div>
+      <div>
+        <div style="font-weight:700;margin-bottom:6px">موقع المعمل</div>
+        <a id="mapsLink" href="#" target="_blank" rel="noopener noreferrer" style="color:#c30b0b;text-decoration:underline">افتح الموقع على الخريطة</a>
+      </div>
+    </div>
+    <nav>
+    <a href="http://ekbal-labs.com" target="_blank" rel="noopener noreferrer">👤️ تسجيل دخول</a>
+    <a href="#services">📒الخدمات</a>
+    <a href="#about">🧪عن المعمل</a>
+    <a href="#contact" style="color:blue;">☎️اتصل بنا</a>
+    </nav>
+  </header>
+<!-- أزرار العروض الخاصة -->
+<div style="text-align:center; margin:20px 0; display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+  <a class="btn" href="/offers.html" target="_blank" rel="noopener noreferrer"
+     style="background:#2563eb; color:#fff; padding:10px 20px; border-radius:8px; text-decoration:none;">
+    📢 عروض المعمل
+  </a>
+
+  <a class="btn" href="/check2025.html" target="_blank" rel="noopener noreferrer" 
+     style="background:#dc2626; color:#fff; padding:10px 20px; border-radius:8px; text-decoration:none;">
+    🧪 فحص الدم الشامل (البـلاتيني)
+  </a>
+
+  <a class="btn" href="/device3.jpg" target="_blank" rel="noopener noreferrer" 
+     style="background:#dc2626; color:yellow; padding:10px 20px; border-radius:8px; text-decoration:none;">
+    🧪 عرض خااص جداا اضغط هنا
+  </a>
+</div>
+
+  <div class="logo-header" onclick="location.reload()"></div>
+  <section class="hero">
+    <div class="card">
+      <h2>الفحص الموثوق والنتائج السريعة</h2>
+      <p>معمل متكامل لتحاليل الدم، هرمونات، وظائف كبد وكلى، فيتامينات وأكثر — نتائج دقيقة وخدمة استلام عبر الواتساب.</p>
+      <div class="cta">
+        <a class="btn" href="https://wa.me/201117100969" target="_blank">💬 احجز الآن عبر الواتساب</a>
+        <a class="btn" href="https://ekbal-labs.com" target="_blank">📒 احجز عبر موقع المعمل</a>
+        <a class="btn" href="#services">📋 عرض باقات التحاليل</a>
+      </div>
+      <div class="info-list">
+        <div>⏱️ نتائج سريعة حسب نوع التحليل</div>
+        <div>🧪 أجهزة حديثة وفريق فني معتمد</div>
+        <div>🏥 استلام من المعمل أو توصيل للمنزل</div>
+      </div>
+    </div>
+    <aside>
+      <div class="card">
+        <h3>تواصل معنا</h3>
+        <div class="contact">
+          <strong>العنوان:</strong>
+          <div>13 شارع عز الدين عمر من شارع ترسا، الهرم - بجوار سنتر زلزال - أعلي البان فرحان - الدور الأول</div>
+          <strong>الهاتف / واتساب:</strong>
+          <a href="tel:+201117100969">01117100969</a>
+          <a href="tel:+201275417454">01275417454</a>
+          <div class="small" style="color: darkred; font-weight: bold;">مواعيد العمل: 9 صباحًا - 11 مساءً يوميًا ماعدا الجمعة</div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:12px;text-align:center">
+        <h3>باقة مميزة</h3>
+        <p class="small" style="color:red;font-weight:bold;">باقة فحص الدم الشاملة — نتيجة خلال ساعة لهرمونات، الغدة الدرقية، فيتامين د</p>
+        <a class="btn" href="https://wa.me/201117100969" target="_blank">☎️اطلب الآن</a>
+      </div>
+    </aside>
+  </section>
+
+  <section id="services" class="grid">
+    <div class="card">
+      <h3>خدماتنا</h3>
+      <ul>
+        <li><a href="/SAVE.jpg" target="_blank">باقة تحاليل فحص الدم الشامل</a></li>
+        <li><a href="/check2025.html" target="_blank">باقة فحص الدم الشامل البلاتيني</a></li>
+        <li><a href="/HORMON.jpg" target="_blank">باقة تحاليل الهرمونات</a></li>
+        <li><a href="/HomaIR_2025.jpg" target="_blank">باقة مقاومة الأنسولين</a></li>
+        <li><a href="/D2025.jpg" target="_blank">تحليل فيتامين دال (D)</a></li>
+        <li><a href="/D+B12.jpg" target="_blank">تحليل فيتامين B12</a></li>
+        <li><a href="/HAIR.jpg" target="_blank">تحليل تساقط الشعر</a></li>
+        <li><a href="/fat2025.jpg" target="_blank">تحليل السمنة والنحافة</a></li>
+        <li><a href="/child2025.jpg" target="_blank">تحاليل للأطفال</a></li>
+        <li><a href="/bone2025.jpg" target="_blank">تحاليل العظام</a></li>
+        <li><a href="/Anima.jpg" target="_blank">تحاليل الأنيميا</a></li>
+        <li><a href="/sugar.jpg" target="_blank">تحاليل السكر</a></li>
+        <li><a href="/ALL-VITAMIN12.jpg" target="_blank">فيتامينات ومعادن وكالسيوم</a></li>
+        <li><a href="/cardiac.jpg" target="_blank">إنزيمات القلب</a></li>
+        <li><a href="/dis1.jpg" target="_blank">باقة الكشف المبكر عن الامراض المزمنه</a></li>
+        <li>تحاليل حمل (متابعة شهرية)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>مميزات المعمل</h3>
+      <ul>
+        <li>فريق فني معتمد</li>
+        <li>أجهزة حديثة</li>
+        <li><a href="http://ekbal-labs.com" target="_blank">نتائج التحاليل عبر الموقع</a> أو عبر الواتساب</li>
+        <li>أسعار تنافسية وباقات عائلية</li>
+        <li>ادق - اسرع - أرخص</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>أسئلة شائعة</h3>
+      <ul>
+        <li>هل يمكن أخذ عينات للمنزل؟ نعم حسب المنطقة.</li>
+        <li>هل يجب الصيام لبعض التحاليل؟ نعم لبعض الاختبارات.</li>
+        <li><a href="precautions.html" target="_blank">اضغط هنا لمتابعة شروط التحاليل</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="about" class="grid">
+    <div class="card">
+      <h3>عن معمل إقبال</h3>
+      <p>نحن معمل طبي متخصص في التحاليل الطبية بخبرة 30 سنة، نستخدم أحدث الأجهزة ونركز على الدقة وسرعة النتائج بإشراف د/ محمد إقبال عبدالله دعبس.</p>
+    </div>
+    <div class="card">
+      <h3>مواقع التواصل</h3>
+      <a href="https://www.facebook.com/profile.php?id=61580276936738" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;color:#1877f2;font-weight:bold;text-decoration:none;">
+        <img src="facebook.png" alt="Facebook Logo" style="width:20px;height:20px;transition:transform 0.2s;">
+        <span>تابعنا على Facebook للمزيد من العروض والإعلانات</span>
+      </a>
+    </div>
+  </section>
+  
+   <footer id="contact">
+    <div style="display:flex;flex-direction:row;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <div>
+        <strong>معامل إقبال للتحاليل الطبية</strong>
+        <div class="small">13 شارع عز الدين عمر من شارع ترسا، الهرم - بجوار سنتر زلزال - أعلي البان فرحان - الدور الأول</div>
+      </div>
+      <div>
+        <div>الهاتف / واتساب: <a href="tel:+201117100969" style="color:#fff;text-decoration:underline">01117100969</a> / <a href="tel:+201275417454" style="color:#fff;text-decoration:underline">01275417454</a></div>
+        <div class="small">© جميع الحقوق محفوظة — معامل إقبال</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- زر Contact Us -->
+  <button class="contact-button" onclick="toggleOptions()">
+    <img src="chat-icon.jpg" alt="Chat"> Contact Us
+  </button>
+  <div class="contact-options" id="contactOptions">
+    <a href="tel:01117100969" class="call-btn">📞 اتصال</a>
+    <a href="https://wa.me/201117100969" target="_blank">💬 واتساب</a>
+  </div>
+
+  <!-- مكتبة QR -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script>
+    const lat = 29.9919167, lng = 31.1616111;
+    const mapsUrl = `https://maps.google.com/?q=${lat},${lng}`;
+    new QRCode(document.getElementById("qrcode"), { text: mapsUrl, width: 60, height: 60, correctLevel: QRCode.CorrectLevel.H });
+    document.getElementById("mapsLink").href = mapsUrl;
+    function toggleOptions() {
+      const options = document.getElementById("contactOptions");
+      options.style.display = (options.style.display === "flex") ? "none" : "flex";
+    }
+    document.addEventListener("contextmenu", e => e.preventDefault());
+    document.addEventListener("dragstart", e => { if (e.target.tagName === "IMG") e.preventDefault(); });
+  </script>
+ 
+</footer>
+
+</body>
+</html>

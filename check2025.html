@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>فحص شامل — Ekbal Labs</title>
+  <style>
+    :root{
+      --wood:#8B4513;
+      --card:#fff;
+      --muted:#6b6b6b;
+      --accent:#0069d9;
+    }
+    body{
+      font-family: "Segoe UI", Tahoma, Arial, "Helvetica Neue", "Noto Naskh Arabic", sans-serif;
+      margin:16px;
+      background: #f6f7fb;
+      color:#111;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+
+    .card {
+      max-width:900px;
+      margin: 0 auto;
+      background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.98));
+      border-radius:12px;
+      box-shadow: 0 6px 20px rgba(20,20,40,0.08);
+      overflow: hidden;
+      border:1px solid rgba(0,0,0,0.04);
+    }
+
+    /* الصورة */
+    .card .image-wrap{
+      position:relative;
+      width:100%;
+      background:#eee;
+    }
+    .card img{
+      display:block;
+      width:100%;
+      height:auto;
+      object-fit:cover;
+    }
+
+    /* خيار: نص فوق الصورة (overlay) */
+    .card.overlay .info{
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      background: rgba(0,0,0,0.55);
+      color: #fff;
+      padding:12px 14px;
+      border-radius:8px;
+      backdrop-filter: blur(4px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    }
+
+    /* نص أسفل الصورة (الافتراضي) */
+    .card .content{
+      padding:18px 20px;
+    }
+    .title{
+      font-size:20px;
+      font-weight:700;
+      color:var(--wood);
+      margin-bottom:6px;
+    }
+    .price{
+      font-size:18px;
+      font-weight:700;
+      color:#111;
+      margin-bottom:6px;
+    }
+    .visit{
+      color:var(--accent);
+      font-weight:700;
+      margin-bottom:12px;
+    }
+
+    .list{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap:8px 18px;
+      list-style:none;
+      padding:0;
+      margin:8px 0 16px 0;
+    }
+    .list li{
+      background:var(--card);
+      border:1px solid rgba(0,0,0,0.04);
+      padding:8px 10px;
+      border-radius:6px;
+      font-size:15px;
+      color:#222;
+    }
+
+    .contact-row{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      margin-top:8px;
+    }
+    .phone{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background: #0b5ed7;
+      color:white;
+      padding:8px 12px;
+      border-radius:8px;
+      text-decoration:none;
+      font-weight:700;
+    }
+    .note{
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    /* responsive */
+    @media (max-width:700px){
+      .list{ grid-template-columns: 1fr; }
+      .title{ font-size:18px; }
+      .card .content{ padding:14px; }
+      .card.overlay .info{ left:10px; right:10px; bottom:10px; padding:10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ضع أو ازل الصنف "overlay" من div.card لتغيير العرض (text فوق الصورة أو تحتها) -->
+  <div class="card"> <!-- اضف overlay داخل class="card overlay" لو تفضل النص فوق الصورة -->
+    <div class="image-wrap">
+      <!-- لو الصورة في نفس مجلد الموقع اكتب src="check2025.jpg" -->
+      <!-- في حال رفعتها باسم مختلف غيّر مسار الصورة -->
+      <img src="check2025.jpg" alt="فحص شامل — Ekbal Labs">
+      <!-- لو اخترت وضع النص فوق الصورة (overlay) انقل المحتوى هنا داخل .info -->
+    </div>
+
+    <!-- المحتوى تحت الصورة -->
+    <div class="content">
+      <div class="title">فحص شامل (بلاتينى)</div>
+      <div class="price">سعر الفحص: <span style="color:var(--wood);">7,500 جـ</span></div>
+      <div class="visit">الزيارة المنزلية مجاناً</div>
+
+      <div class="note">يشمل التحاليل التالية:</div>
+
+      <ul class="list">
+        <li>دلالات الأورام</li>
+        <li>هرمونات الغدة الدرقية</li>
+        <li>هرمونات الرجال والسيدات والعقم</li>
+        <li>صورة دم كاملة</li>
+        <li>وظائف كبد</li>
+        <li>وظائف كلى</li>
+        <li>الزلال</li>
+        <li>دهون كاملة</li>
+        <li>النقرس</li>
+        <li>مخزون الحديد</li>
+        <li>السكر التراكمي (HbA1c)</li>
+        <li>المعادن: كالسيوم — فسفور — ماغنسيوم — زنك</li>
+        <li>إنزيمات القلب</li>
+        <li>إنزيمات المعدة</li>
+        <li>جرثومة المعدة (H. pylori)</li>
+        <li>تحاليل العظام</li>
+        <li>فيتامين D</li>
+        <li>فيتامين B12</li>
+      </ul>
+
+      <div class="contact-row">
+        <a class="phone" href="tel:01117100969">📞 01117100969</a>
+        <div class="note">للحجز والاستفسار — خدمة سحب العينات من المنزل متاحة مجاناً</div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
