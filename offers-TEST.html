@@ -1,0 +1,335 @@
+<!-- offers.html -->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>عروض المعمل</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- خط عربي من Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Cairo', 'Tahoma', sans-serif;
+      background: #fafafa;
+    }
+    header {
+      background: linear-gradient(90deg, #6a11cb, #2575fc);
+      color: white;
+      padding: 15px;
+      border-radius: 0 0 15px 15px;
+    }
+    .product-card {
+      transition: 0.3s;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+    .cart-icon {
+      cursor: pointer;
+      font-size: 24px;
+      position: relative;
+    }
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -10px;
+      background: red;
+      color: white;
+      border-radius: 50%;
+      padding: 2px 6px;
+      font-size: 12px;
+    }
+    .cart-dropdown {
+      position: fixed;
+      top: 70px;
+      right: 20px;
+      width: 350px;
+      background: #ffffff;
+      border-radius: 15px;
+      padding: 15px;
+      display: none;
+      z-index: 9999;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+    .cart-close {
+      position: absolute;
+      top: 5px;
+      left: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .btn-custom {
+      border-radius: 50px;
+      padding: 8px 20px;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #004080;
+      color: white;
+      font-size: 14px;
+      margin-top: 50px;
+    }
+    footer span {
+      font-weight: bold;
+    }
+    .counter-box {
+      display: inline-block;
+      background: #ffffff;
+      padding: 15px 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      margin-bottom: 15px;
+    }
+    .counter-label {
+      display: block;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #2c3e50;
+    }
+ 
+    /* لمسات ألوان للباقة */
+    .card[data-category="السكر"] { background: linear-gradient(135deg,#f9f9f9,#e3f2fd); }
+    .card[data-category="باقة الانيميا"] { background: linear-gradient(135deg,#f9f9f9,#fce4ec); }
+    .card[data-category="الهرمونات "] { background: linear-gradient(135deg,#f9f9f9,#f3e5f5); }
+    .card[data-category="فيتامينات"] { background: linear-gradient(135deg,#f9f9f9,#fff3e0); }
+    .card[data-category="اطمن علي نفسك"] { background: linear-gradient(135deg,#f9f9f9,#e8f5e9); }
+    .card[data-category="تحاليل التخسيس "] { background: linear-gradient(135deg,#f9f9f9,#e0f7fa); }
+    .card[data-category="تحاليل تساقط الشعر"] { background: linear-gradient(135deg,#f9f9f9,#ffebee); }
+    .card[data-category="تحاليل العظام "] { background: linear-gradient(135deg,#f9f9f9,#ede7f6); }
+    .card[data-category="تحاليل الغدة الدرقية "] { background: linear-gradient(135deg,#f9f9f9,#fffde7); }
+    .card[data-category="تحاليل المخدرات "] { background: linear-gradient(135deg,#f9f9f9,#fff3e0); }
+    
+    .social-buttons{display:flex;gap:10px;justify-content:center;margin-top:15px;flex-wrap:wrap;}
+    .social-buttons a{border-radius:30px;font-weight:bold;padding:8px 15px;text-decoration:none;color:#fff;}
+    .fb-btn{background-color:#1877f2;}
+    .insta-btn{background-color:#e1306c;}
+    .btn:hover{opacity:0.85;}
+    .note{color:yellow;font-weight:bold;text-decoration:none;}
+    .supervisor{color:black;font-weight:bold;margin-top:10px;}
+    .supervisor-name:hover{color:red;cursor:pointer;}
+
+    .comment-overlay{
+     position:absolute;
+     top:50%;
+     left:50%;
+     height:40%;
+    transform:translate(-50%,-50%);
+    background:rgba(0,0,0,0.6);
+    color:#fff;
+    font-size:16px;
+    padding:10px 15px;
+    border-radius:8px;
+    text-align:center;
+    opacity:0;
+    transition:opacity 1.4s ease;
+}
+    .card:hover .comment-overlay{opacity:1;}
+
+  </style>
+</head>
+<body>
+
+  <!-- الهيدر -->
+  <header class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+    <h2>📢 عروض المعمل </h2>
+    <div class="contact-row">
+    <div>📞 <a href="tel: 01275417454" class="text-white text-decoration-none"> خدمة العملاء: 01117100969</a></div>
+    <a class="note" href="https://wa.me/201275417454" target="_blank">💬 للاستفسارات (واتساب)</a>
+    <div class="supervisor">تحت إشراف دكتور/ <span class="supervisor-name">محمد إقبال عبدالله دعبس</span></div>
+    <div class="social-buttons">
+    <a href="http://ekbal-labs.com" target="_blank" rel="noopener noreferrer">👤️ تسجيل دخول</a>
+    <a href="https://www.facebook.com/profile.php?id=61580276936738" target="_blank" class="fb-btn btn"><i class="fab fa-facebook-f"></i> فيسبوك</a>
+    </div>
+    </div>
+    <div class="d-flex gap-3 align-items-center flex-wrap">
+      <input type="text" id="searchInput" placeholder="ابحث عن منتج..." class="form-control">
+      <select id="categoryFilter" class="form-select">
+        <option value="all">كل الأقسام</option>
+        <option value="السكر">السكر ومقاومة الانسولين</option>
+        <option value="باقة الانيميا">باقة الانيميا والحديد</option>
+        <option value="الهرمونات ">الهرمونات والعقم</option>
+        <option value="فيتامينات">عروض الفيتامينات</option>
+        <option value="اطمن علي نفسك">باقة اطمن علي نفسك </option>
+        <option value="تحاليل التخسيس ">باقة السمنة والنحافة </option>
+        <option value="تحاليل تساقط الشعر">باقة تحاليل تساقط الشعر </option>
+        <option value="تحاليل العظام ">باقة العظام </option>
+        <option value="تحاليل الغدة الدرقية ">باقة الغدة الدرقية </option>
+        <option value="تحاليل المخدرات ">تحاليل المخدرات </option>
+      </select>
+
+      <div class="cart-icon" onclick="toggleCart()">
+        🛒 <span class="cart-count" id="cartCount">0</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- سلة المشتريات -->
+  <div class="cart-dropdown" id="cartDropdown">
+    <span class="cart-close" onclick="toggleCart()">×</span>
+    <h6 class="mb-3 fw-bold">سلة المشتريات</h6>
+    <ul id="cartItems" class="list-group mb-3"></ul>
+    <p class="mb-2"><strong>الإجمالي: </strong><span id="cartTotal">0</span> ج.م</p>
+    <button class="btn btn-success btn-custom w-100 mb-2" onclick="goToCheckout()">إتمام الطلب</button>
+    <button class="btn btn-danger btn-custom w-100" onclick="clearCartAndHide()">إلغاء الطلبات</button>
+  </div>
+
+  <!-- المنتجات -->
+  <main class="container py-4">
+    <div class="row" id="productList"></div>
+  </main>
+
+  <!-- الفوتر -->
+  <footer>
+    <div class="counter-box">
+      <span class="counter-label">عدد الزوار</span>
+      <a href="https://ekballabs.github.io/offers.html" title="عـروض المعمل">
+        <img src="https://counter5.optistats.ovh/private/freecounterstat.php?c=pl7814exxjlhd8gkbz677xdtl211tr4q"
+             border="0"
+             title="عـداد الـزوار"
+             alt="website counter">
+      </a>
+    </div>
+    <p>© <span id="year"></span> معامل إقبال للتحاليل الطبية — جميع الحقوق محفوظة</p>
+  <!-- طرق الدفع -->
+    <div class="payment-bar" aria-label="طرق الدفع المتاحة"> 
+      <span class="payment-bar__title">طرق الدفع المتاحة:</span> 
+      <div class="payment-bar__icons">
+      <img src="visa-master.png" alt="visa-master" class="payment-icon" style="height:50px" title="فيزا - ماستركارد"> 
+      <img src="instapay.png" alt="InstaPay" class="payment-icon" style="height:90px" title="انـيستـا باي">
+      <img src="cash.png" alt="cash" class="payment-icon" style="height:40px" title="كـــاش">
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- سكربت المنتجات والسلة -->
+  <script>
+    const products = [
+      {id:1,name:"السكر  والسكرالتراكمي ",price:250,category:"السكر",img:"sugar.jpg",comment:"الشروط : الصيام 6 ساعات - مسموح شرب الماء فقط "},
+      {id:2,name:"  مقامة الانسولين ",price:450,category:"السكر",img:"HomaIR_2025.jpg",comment:"يتم عمل التحاليل سواء المريض صائم او فاطر لذا لا يشترط الصيام"},
+      {id:3,name:"باقة الانيميا والحديد ",price:400,category:"باقة الانيميا",img:"Anima.jpg",comment:"لا يشترط الصيام"},
+      {id:4,name:"الهرمونات والعقم",price:1800,category:"الهرمونات ",img:"HORMON.jpg",comment:"لا يشترط الصيام"},
+      {id:5,name:" فيتامين دال +بي12 ",price:850,category:"فيتامينات",img:"D+B12.jpg",comment:"لا يشترط الصيام"},
+      {id:6,name:"فيتامين دال ",price:380,category:"فيتامينات",img:"D2025.jpg",comment:"لا يشترط الصيام"},
+      {id:7,name:" الفيتامينات الشاملة",price:1500,category:"فيتامينات",img:"ALL-VITAMIN12.jpg",comment:"لا يشترط الصيام"},
+      {id:8,name:"باقة اطمن علي نفسك ",price:450,category:"اطمن علي نفسك",img:"SAVE.jpg",comment:"لا يشترط الصيام"},
+      {id:9,name:"باقة السمنة والنحافة",price:480,category:"تحاليل التخسيس ",img:"fat2025.jpg",comment:"الشروط: صيام 12 ساعه - مسموح بشرب الماء فقط"},
+      {id:10,name:"باقة تحاليل تساقط الشعر",price:1580,category:"تحاليل تساقط الشعر",img:"HAIR.jpg",comment:"لا يشترط الصيام"},
+      {id:11,name:"باقة العظام",price:550,category:"تحاليل العظام ",img:"bone2025.jpg",comment:"لا يشترط الصيام"},
+      {id:12,name:"باقة الغدة الدرقية",price:350,category:"تحاليل الغدة الدرقية ",img:"thyroid.jpg",comment:"لا يشترط الصيام"}
+      {id:13,name:"باقة تحاليل المخدرات",price:500,category:"تحاليل المخدرات ",img:"DRUGS.jpg",comment:"لا يشترط الصيام"}
+    ];
+
+    let cart = [];
+
+    function renderProducts(){
+      const productList = document.getElementById('productList');
+      productList.innerHTML = '';
+      const search = document.getElementById('searchInput').value.toLowerCase();
+      const category = document.getElementById('categoryFilter').value;
+      products.forEach(p=>{
+        if((p.name.toLowerCase().includes(search)||search==='')&&(category==='all'||p.category===category)){
+          const col = document.createElement('div');
+          col.className='col-md-3 mb-3 product-card';
+          col.innerHTML=`
+            <div class="card h-100 position-relative" data-category="${p.category}">
+              <img src="${p.img}" class="card-img-top" alt="${p.name}">
+              <div class="card-body">
+                <h5 class="card-title">${p.name}</h5>
+                <p class="card-text">سعر: ${p.price} ج.م</p>
+                <button class="btn btn-primary btn-custom" onclick="addToCart(${p.id})">أضف للسلة</button>
+              </div>
+              ${p.comment ? `<div class="comment-overlay">${p.comment}</div>` : ""}
+            </div>`;
+          productList.appendChild(col);
+        }
+      });
+
+      // تفعيل ظهور الكومنت على hover والاختفاء بعد 1.5 ثانية
+      document.querySelectorAll('.card').forEach(card=>{
+        const overlay = card.querySelector('.comment-overlay');
+        if(!overlay) return;
+
+        card.addEventListener('mouseenter', ()=>{
+          overlay.style.opacity = "1";
+          setTimeout(()=>{ overlay.style.opacity = "0"; },1500);
+        });
+        card.addEventListener('mouseleave', ()=>{
+          overlay.style.opacity = "0";
+        });
+
+        // تشغيل الكومنت باللمس على الموبايل
+        card.addEventListener('touchstart', (e)=>{
+          if(e.target.tagName === "BUTTON" || e.target.tagName === "A") return;
+          overlay.style.opacity = "1";
+          setTimeout(()=>{ overlay.style.opacity = "0"; },1500);
+        });
+      });
+    }
+
+    function addToCart(id){
+      const product = products.find(p=>p.id===id);
+      cart.push({...product});
+      updateCart();
+      document.getElementById('cartDropdown').style.display='block';
+    }
+
+    function updateCart(){
+      const cartItems=document.getElementById('cartItems');
+      cartItems.innerHTML='';
+      let total=0;
+      cart.forEach((item,index)=>{
+        total+=item.price;
+        const li=document.createElement('li');
+        li.className='list-group-item d-flex justify-content-between align-items-center';
+        li.innerHTML=`${item.name} - ${item.price} ج.م <button class='btn btn-sm btn-danger' onclick='removeItem(${index})'>X</button>`;
+        cartItems.appendChild(li);
+      });
+      document.getElementById('cartTotal').innerText=total;
+      document.getElementById('cartCount').innerText=cart.length;
+    }
+
+    function removeItem(index){
+      cart.splice(index,1);
+      updateCart();
+    }
+
+    function clearCartAndHide(){
+      cart=[];
+      updateCart();
+      document.getElementById('cartDropdown').style.display='none';
+    }
+
+    function toggleCart(){
+      const dropdown=document.getElementById('cartDropdown');
+      dropdown.style.display=(dropdown.style.display==='block')?'none':'block';
+    }
+
+    function goToCheckout(){
+      if(cart.length===0){alert('السلة فارغة!'); return;}
+      localStorage.setItem('cartItems', JSON.stringify(cart));
+      window.open('checkout-Lab.html','_blank');
+    }
+
+    document.getElementById('searchInput').addEventListener('input',renderProducts);
+    document.getElementById('categoryFilter').addEventListener('change',renderProducts);
+
+    renderProducts();
+
+    // تحديث السنة تلقائياً
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+
